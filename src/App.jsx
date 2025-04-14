@@ -29,17 +29,22 @@ function App() {
 
 
   const SendForm = (e) => {
+    setAdviseGood(false)
+    setAdvisebad(false)
     e.preventDefault()
 
 
     axios.post("https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts", formsData)
       .then(respose => {
         console.log(respose)
-        statusForm = respose.status
-
+        setAdviseGood(true)
 
       })
+      .catch(err => {
+        console.error(err),
+          setAdvisebad(true)
 
+      })
 
   }
 
@@ -88,11 +93,17 @@ function App() {
             onChange={cangeFormObject}
             type="checkbox"
             className="form-check-input" />
-          <label className="form-check-label" >publico</label>
+          <label className="form-check-label" >pubblico</label>
         </div>
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>
 
+      {advisegood && <div className="alert alert-success" role="alert">
+        caricato con successo
+      </div>}
+      {advisebad && <div className="alert alert-danger" role="alert">
+        errore nell caricamento del post
+      </div>}
 
     </>
   )
