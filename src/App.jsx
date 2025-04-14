@@ -34,9 +34,9 @@ function App() {
     e.preventDefault()
 
 
-    axios.post("https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts", formsData)
+    axios.post("https://67c5b4f3351c081993fb1ab6.mockapi.io/api/postsss", formsData)
       .then(respose => {
-        console.log(respose)
+        console.log(respose.data)
         setAdviseGood(true)
 
       })
@@ -56,55 +56,57 @@ function App() {
 
   return (
     <>
-      <form onSubmit={SendForm}>
-        <div className="mb-3">
-          <label className="form-label"> Autore</label>
-          <input
-            type="text"
-            name='author'
-            value={formsData.name}
-            onChange={cangeFormObject} className="form-control" aria-describedby="emailHelp" />
-        </div>
 
-        <div className="mb-3">
-          <label className="form-label"> Titolo</label>
-          <input
-            type="text"
-            name='title'
-            value={formsData.name}
-            onChange={cangeFormObject} className="form-control" aria-describedby="emailHelp" />
-        </div>
+      <div className='container m-4'>
+        <form onSubmit={SendForm}>
+          <div className="mb-3">
+            <label className="form-label"> Autore</label>
+            <input
+              type="text"
+              name='author'
+              value={formsData.name}
+              onChange={cangeFormObject} className="form-control" aria-describedby="emailHelp" />
+          </div>
 
-        <div className="mb-3">
-          <label className="form-label"> testo del post </label>
-          <input
-            type="text"
-            name='body'
-            value={formsData.name}
-            onChange={cangeFormObject} className="form-control" aria-describedby="emailHelp" />
-        </div>
+          <div className="mb-3">
+            <label className="form-label"> Titolo</label>
+            <input
+              type="text"
+              name='title'
+              value={formsData.name}
+              onChange={cangeFormObject} className="form-control" aria-describedby="emailHelp" />
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label"> testo del post </label>
+            <input
+              type="text"
+              name='body'
+              value={formsData.name}
+              onChange={cangeFormObject} className="form-control" aria-describedby="emailHelp" />
+          </div>
 
 
 
-        <div className="mb-3 form-check">
-          <input
-            name='public'
-            checked={formsData.avaiable}
-            onChange={cangeFormObject}
-            type="checkbox"
-            className="form-check-input" />
-          <label className="form-check-label" >pubblico</label>
-        </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
-      </form>
+          <div className="mb-3 form-check">
+            <input
+              name='public'
+              checked={formsData.avaiable}
+              onChange={cangeFormObject}
+              type="checkbox"
+              className="form-check-input" />
+            <label className="form-check-label" >pubblico</label>
+          </div>
+          <button type="submit" className="btn btn-primary mb-5">Submit</button>
+        </form>
 
-      {advisegood && <div className="alert alert-success" role="alert">
-        caricato con successo
-      </div>}
-      {advisebad && <div className="alert alert-danger" role="alert">
-        errore nell caricamento del post
-      </div>}
-
+        {advisegood && <div className="alert alert-success" role="alert">
+          caricato con successo
+        </div>}
+        {advisebad && <div className="alert alert-danger" role="alert">
+          errore nell caricamento del post
+        </div>}
+      </div>
     </>
   )
 }
