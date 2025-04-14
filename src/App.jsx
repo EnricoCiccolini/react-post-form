@@ -34,10 +34,11 @@ function App() {
     e.preventDefault()
 
 
-    axios.post("https://67c5b4f3351c081993fb1ab6.mockapi.io/api/postsss", formsData)
+    axios.post("https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts", formsData)
       .then(respose => {
         console.log(respose.data)
         setAdviseGood(true)
+
         setTimeout(() => {
           setAdviseGood(false)
         }, 5000);
