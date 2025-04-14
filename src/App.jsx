@@ -38,11 +38,18 @@ function App() {
       .then(respose => {
         console.log(respose.data)
         setAdviseGood(true)
+        setTimeout(() => {
+          setAdviseGood(false)
+        }, 5000);
 
       })
       .catch(err => {
-        console.error(err),
-          setAdvisebad(true)
+        console.error(err)
+        setAdvisebad(true)
+
+        setTimeout(() => {
+          setAdvisebad(false)
+        }, 5000);
 
       })
 
@@ -91,7 +98,7 @@ function App() {
           <div className="mb-3 form-check">
             <input
               name='public'
-              checked={formsData.avaiable}
+              checked={formsData.public}
               onChange={cangeFormObject}
               type="checkbox"
               className="form-check-input" />
