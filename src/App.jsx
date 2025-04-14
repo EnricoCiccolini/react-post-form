@@ -1,7 +1,12 @@
+import axios from 'axios'
 import { useState } from 'react'
 
 
 function App() {
+
+  const [advisegood, setAdviseGood] = useState(false)
+  const [advisebad, setAdvisebad] = useState(false)
+
   const [formsData, setFormData] = useState({
 
     author: '',
@@ -19,9 +24,24 @@ function App() {
       [e.target.name]: value
     }))
   }
-  console.log(formsData)
 
 
+
+
+  const SendForm = (e) => {
+    e.preventDefault()
+
+
+    axios.post("https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts", formsData)
+      .then(respose => {
+        console.log(respose)
+        statusForm = respose.status
+
+
+      })
+
+
+  }
 
 
 
@@ -31,8 +51,8 @@ function App() {
 
   return (
     <>
-      <form>
-        <div class="mb-3">
+      <form onSubmit={SendForm}>
+        <div className="mb-3">
           <label className="form-label"> Autore</label>
           <input
             type="text"
@@ -41,7 +61,7 @@ function App() {
             onChange={cangeFormObject} className="form-control" aria-describedby="emailHelp" />
         </div>
 
-        <div class="mb-3">
+        <div className="mb-3">
           <label className="form-label"> Titolo</label>
           <input
             type="text"
@@ -50,7 +70,7 @@ function App() {
             onChange={cangeFormObject} className="form-control" aria-describedby="emailHelp" />
         </div>
 
-        <div class="mb-3">
+        <div className="mb-3">
           <label className="form-label"> testo del post </label>
           <input
             type="text"
@@ -67,13 +87,13 @@ function App() {
             checked={formsData.avaiable}
             onChange={cangeFormObject}
             type="checkbox"
-            class="form-check-input" />
-          <label class="form-check-label" >publico</label>
+            className="form-check-input" />
+          <label className="form-check-label" >publico</label>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" className="btn btn-primary">Submit</button>
       </form>
 
-      {formsData.author}{formsData.public}
+
     </>
   )
 }
